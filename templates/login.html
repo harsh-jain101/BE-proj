@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block body %}
+    
+<div style="height: 100%;width: 100%; padding-top: 90px;"  class="col-lg-4 col-md-4 col-sm-4 container justify-content-center">
+<section class="vh-100">
+    <div class="container-fluid h-custom">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+          <img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-login-form/draw2.png" class="img-fluid"
+            alt="Sample image">
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+          <form action="/login" method="post" enctype="multipart/form-data">
+            
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                </div>
+                <select onChange="return c();" id='s' name="val" class="custom-select" id="inputGroupSelect01" required>
+                  <option selected>Choose...</option>
+                  <option value="1">Teacher</option>
+                  <option value="2">Student</option>
+                </select>
+              </div>
+  
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+              <input type="email" id="form3Example3" class="form-control form-control-lg"
+                name="email" placeholder="Enter a valid email address" required/>
+              <label class="form-label" for="form3Example3">Email address</label>
+            </div>
+            <div class="form-outline mb-3">
+                <input type="text" id="form3Example4" class="form-control form-control-lg"
+                 name="subject" placeholder="Enter Subject" />
+                <label class="form-label" for="form3Example4">Subject</label>
+              </div>
+              
+  
+            <!-- Password input -->
+            <div id="c">
+            <div class="form-outline mb-3">
+              <input type="text" id="form3Example4" class="form-control form-control-lg"
+                name="seat" placeholder="Enter SeatNo" required />
+              <label class="form-label" for="form3Example4">SeatNo</label>
+            </div>
+            </div>
+        <div class="text-center text-lg-start mt-4 pt-2">
+            <button type="submit" class="btn btn-primary btn-lg"
+              style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+            
+          </div>
+  
+          </form>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+</div>
+<script type="text/javascript">
+    function c(){
+        var n=document.getElementById('s').value
+        if(n=='1'){
+        document.getElementById('c').style.display='none'
+        }else{
+            document.getElementById('c').style.display='block'
+        }
+    }
+</script>
+  {% endblock body %}

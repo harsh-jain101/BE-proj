@@ -1,0 +1,71 @@
+  {% extends 'base.html' %}
+  
+  {% block body %}
+    
+  
+    <nav  class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
+              </li>
+              
+              
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container">
+      <form action="/" method="post" enctype="multipart/form-data">
+        {% if not response["m"]['answer'] %}
+          
+        
+        {% if response.get("message")=="success" %}
+        <div class="alert alert-success" role="alert">
+          You have submitted your paper
+          <button type="button" class="btn btn-primary" onclick="return Grade();">Grade</button>
+        </div>
+        {% elif response.get("message")=="upload" %}
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Your Answer</label>
+          <input type="file" class="form-control" name="file" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+          <div id="emailHelp" class="form-text">Please upload correct anwersheet</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        
+        {% endif %} 
+        {% else %}
+        <div class="container">
+        <div class="alert alert-success" role="alert">
+          You have already submitted your paper
+          
+        </div>
+        <button type="button" class="btn btn-primary" onclick="return Grade();">Grade</button>
+        </div>
+
+        <script>
+          function Grade() {
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("demo").innerHTML = this.responseText;
+              }
+            };
+          xhttp.open("GET", "/grade/{{response['m']['seatno']}}", true);
+          xhttp.send();
+          }
+        </script>
+
+        {% endif %}
+        
+      </form>
+    
+    </div>
+
+
+    {% endblock body %}

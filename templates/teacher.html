@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block body %}
+<nav  class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/teacher">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
+          </li>
+          
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+<div class="container" >
+    {% if message=="no" %}
+        
+
+    <div id='d'>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">No of Questions</label>
+        <input type="text" id="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        
+      </div>
+      <button type="button" onClick="return clic();" class="btn btn-primary" >Next</button>
+
+      </div>
+
+
+<form style="display: none;" id='form' action="/teacher" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Subject</label>
+        <input type="text" name="subject" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        
+      </div>
+    <div id='a'>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Question</label>
+      <input type="text" name="q1" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Answrer</label>
+      <textarea name="answer" class="form-control"></textarea>
+
+    </div>
+    </div>
+    <button type="submit"  class="btn btn-primary" >Upload</button>
+    
+  </form>
+  {% else %}
+  <div class="alert alert-success" role="alert">
+          You have already submitted your questions
+        </div>
+  {% endif %}
+  </div>
+  <script  type = "text/javascript">
+      function clic(){
+         
+          document.getElementById('d').style.display='none'
+          var n=document.getElementById('number').value
+
+          for(i=1;i<n;i+=1){
+            console.log("hello")
+          document.getElementById('a').innerHTML+=`<div class=\"mb-3\"><label for=\"exampleInputEmail1\" class=\"form-label\">Question</label><input type=\"text\" name=\"q${i}\" class=\"form-control\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\"></div><div class=\"mb-3\"><label for=\"exampleInputPassword1\" class=\"form-label\">Answrer</label><textarea name=\"answer\" class=\"form-control\"></textarea></div>`
+      }
+      document.getElementById('form').style.display="block"}
+  </script>
+    
+{% endblock body %}
